@@ -1,0 +1,36 @@
+{
+  "name": "simple-cart-shop",
+  "version": "1.3.1",
+  "description": "basic functionality for a basket Site",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HtmlMak/simple-cart-shop"
+  },
+  "scripts": {
+    "develop": "gulp watch",
+    "deploy": "gulp clean && gulp copy && gulp js-core --soursemap=false && gulp js-core --soursemap=false --production"
+  },
+  "authors": [
+    "HtmlMak <htmlmak@gmail.com>"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-extname": "^0.2.2",
+    "gulp-if": "^2.0.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "rimraf": "^2.5.2",
+    "run-sequence": "^1.1.5",
+    "yargs": "^4.2.0"
+  },
+  "dependencies": {
+    "jquery": "^1.8.0",
+    "js-cookie": "^2.1.2"
+  },
+  "private": false
+}

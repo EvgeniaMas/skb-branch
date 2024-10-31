@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Cart</title>
+    <script src="/dist/js/jquery.js"></script>
+    <script src="/dist/js/js.cookie.js"></script>
+    <script src="/dist/js/simple-cart.js"></script>
+    <script>
+        $(document).ready(function () {
+            function printObject(o) {
+                var out = '';
+                for (var p in o) {
+                    out += p + ': ' + o[p] + '<br>';
+                }
+                return out;
+            }
+
+            window.cart = new Cart({
+                v: '1.3',
+                multipleQuery: true,
+                queryParams: ['product_id', 'package_id'],
+                keys: {
+                    discountPrice: 'discount_price'
+                }
+            });
+
+            $(window).on('cart.update', function (e, options) {
+                var htmlPrint = "";
+
+                $.each(options.cart, function (key, value) {
+                    htmlPrint += printObject(value);
+                });
+
+                $('#state').html(htmlPrint);
+            });
+
+            $('#add_1').on('click', function () {
+                cart.add({
+                    product_id: 1,
+                    package_id: 1,
+                    price: 150,
+                    count: 1
+                }, 1);
+            });
+
+            $('#add_2').on('click', function () {
+                cart.add({
+                    product_id: 1,
+                    package_id: 2,
+                    price: 150,
+                    discount_price: 120,
+                    count: 1
+                }, 1);
+            });
+
+            $('#add_3').on('click', function () {
+                console.log(cart.getTotalSumByProduct({
+                    product_id: 1,
+                    package_id: 2,
+                    price: 150,
+                    count: 1
+                }));
+            });
+
+            $('#delete').on('click', function () {
+                cart.delete({
+                    product_id: 1,
+                    package_id: 2,
+                    price: 150,
+                    count: 1
+                }, 1);
+            });
+
+            cart.init();
+        });
+    </script>
+</head>
+<body>
+<p>Содержимое корзины</p>
+<div id="state"></div>
+
+<button id="add_1">Добавить фасовку
+    <small>(id:1)</small>
+</button>
+<button id="add_2">Добавить фасовку
+    <small>(id:2)</small>
+</button>
+
+<button id="add_3">Получить параметры
+    <small>(id:2)</small>
+</button>
+<button id="delete">Удалить</button>
+</body>
+</html>

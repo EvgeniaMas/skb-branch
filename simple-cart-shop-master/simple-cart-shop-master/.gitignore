@@ -1,0 +1,24 @@
+# cache directories
+Thumbs.db
+*.DS_Store
+*.empty
+
+#phpstorm project files
+.idea
+
+#netbeans project files
+nbproject
+
+#eclipse, zend studio, aptana or other eclipse like project files
+.buildpath
+.project
+.settings
+
+#custom
+/node_modules
+/dist/js/*
+
+!dist/js/simple-cart.min.js
+!dist/js/simple-cart.js
+
+/npm-debug.log
